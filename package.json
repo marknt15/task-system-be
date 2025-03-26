@@ -1,0 +1,44 @@
+{
+  "name": "task-system-be",
+  "version": "1.0.0",
+  "description": "Datacom Tech Test NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "dev": "nodemon src/index.ts",
+    "sam:build": "sam build",
+    "sam:deploy": "sam deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marknt15/task-system-be.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marknt15/task-system-be/issues"
+  },
+  "homepage": "https://github.com/marknt15/task-system-be#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "aws-serverless-express": "^3.4.0",
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/aws-serverless-express": "^3.3.10",
+    "@types/axios": "^0.14.4",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.13.13",
+    "@types/swagger-ui-express": "^4.1.8",
+    "aws-sam-webpack-plugin": "^0.15.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}

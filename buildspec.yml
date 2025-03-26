@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - npm install
+  build:
+    commands:
+      - npm run build
+      - npm run sam:build
+  post_build:
+    commands:
+      - echo Build completed
+
+artifacts:
+  files:
+    - .aws-sam/build/**/*
+    - template.yml
+  discard-paths: yes
