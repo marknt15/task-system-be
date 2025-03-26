@@ -1,5 +1,5 @@
 // src/index.ts
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { config } from './config/env';
 import taskRoutes from './routes/taskRoutes';
 import { corsMiddleware } from './middleware/cors';
@@ -9,8 +9,6 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import awsServerlessExpress from 'aws-serverless-express';
 import dotenv from 'dotenv';
 const app = express();
-
-// dotenv.config({ path: `.env.${env}` });
 
 // loads env variables from a .env file
 dotenv.config();
@@ -52,11 +50,16 @@ app.use('/api', taskRoutes);
 // Error Handling
 app.use(errorHandler);
 
-// Lambda Handler
+// basic test only
+app.get('/hello', (req: Request, res: Response) => {
+  res.json({ message: 'Hello World from Node Express on Lambda :)' });
+});
+
+// Export the handler for Lambda
 const server = awsServerlessExpress.createServer(app);
-console.log('server', server);
-// export const handler: APIGatewayProxyHandler = (event, context) =>
-//   awsServerlessExpress.proxy(server, event, context);
+export const handler: APIGatewayProxyHandler = (event, context) => {
+  awsServerlessExpress.proxy(server, event, context);
+};
 
 // Local Development
 if (process.env.NODE_ENV !== 'production') {
